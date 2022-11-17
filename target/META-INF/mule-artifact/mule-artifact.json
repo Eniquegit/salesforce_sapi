@@ -16,7 +16,9 @@
         "application-types.xml",
         "log4j2.xml",
         "salesforce-implementation.xml",
-        "salesforce_interface.xml"
+        "salesforce_interface.xml",
+        "staging.properties"
+
       ]
     }
   },
