@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
-    <http:listener-config name="salesforce_sapi-httpListenerConfig">
-        <http:listener-connection host="0.0.0.0" port="8081" />
-    </http:listener-config>
     <apikit:config name="salesforce_sapi-config" api="resource::183c2f3b-99a5-48b9-9984-9874e22c6f71:salesforce_sapi:1.0.0:raml:zip:salesforce_sapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="salesforce_sapi-main">
-        <http:listener config-ref="salesforce_sapi-httpListenerConfig" path="/api/*">
+        <http:listener path="/api/*" config-ref="HTTP_Listener_config">
             <http:response statusCode="#[vars.httpStatus default 200]">
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
             <http:error-response statusCode="#[vars.httpStatus default 500]">
-                <http:body>#[payload]</http:body>
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
         <apikit:router config-ref="salesforce_sapi-config" />
@@ -97,13 +94,13 @@ output application/json
         </error-handler>
     </flow>
     <flow name="salesforce_sapi-console">
-        <http:listener config-ref="salesforce_sapi-httpListenerConfig" path="/console/*">
+        <http:listener path="/console/*" config-ref="HTTP_Listener_config">
             <http:response statusCode="#[vars.httpStatus default 200]">
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
             <http:error-response statusCode="#[vars.httpStatus default 500]">
-                <http:body>#[payload]</http:body>
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
         <apikit:console config-ref="salesforce_sapi-config" />
@@ -124,55 +121,12 @@ output application/json
         </error-handler>
     </flow>
     <flow name="put:\createcomposite:application\json:salesforce_sapi-config">
-		<flow-ref doc:name="PatchImplementationflow" doc:id="22ec1294-3339-4937-ba29-259e64459aa2" name="PatchImplementationflow"/>
+		<flow-ref doc:name="PatchImplementationflow" doc:id="ca3a7c31-5920-4b43-9701-9fdb05ee3ccf" name="PatchImplementationflow"/>
     </flow>
     <flow name="get:\createcomposite:salesforce_sapi-config">
-        <ee:transform>
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  Name: "Anusha",
-  isTest: "True",
-  Account_Classification: "Financial Account",
-  Industry: "Agriculture",
-  Subvertical: "fdgfngh",
-  SBQQ__TaxExempt: "jkrdhgvcx",
-  CurrencyIsoCode: "ICU",
-  OwnerID: "BH-234",
-  RecordTypeId: "ABV2345",
-  Description: "ghburdrfgcv",
-  BillingStreet: "Hyder nagar",
-  BillingCity: "Hyderabad",
-  BillingPostalCode: "500085",
-  BillingStateCode: "TG",
-  BillingCountryCode: "TG",
-  QS_Bill_To_Email: "anusha@gmail.com",
-  Phone: "45678",
-  APIMBOGUID: "asdcfv",
-  AccountSource: "azsxdcfv",
-  AccountId: "AB123",
-  LastName: "Nalla",
-  FirstName: "Anusha",
-  Email: "anusha@gmail.com",
-  Sync_Immediate: "asdf",
-  "Integration Status": "progress",
-  "Integration message": "completed"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="b788a015-c1ac-4794-aef8-47400cdd19e8" name="salesforce-implementationFlow"/>
     </flow>
     <flow name="post:\createcomposite:application\json:salesforce_sapi-config">
-        <ee:transform>
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  message: "SFDC account created"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="0d832402-d07c-4b69-a671-04a715789c6f" name="salesforce-implementationFlow"/>
     </flow>
 </mule>

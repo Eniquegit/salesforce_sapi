@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:salesforce-composite="http://www.mulesoft.org/schema/mule/salesforce-composite" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/salesforce-composite http://www.mulesoft.org/schema/mule/salesforce-composite/current/mule-salesforce-composite.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9c279759-5708-4c3c-9f66-b08fc60d7d1b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<salesforce-composite:composite-config name="Salesforce_Composite_Config" doc:name="Salesforce Composite Config" doc:id="1a1f0df4-2699-4a8d-be77-39c13a743fc0" >
+		<salesforce-composite:oauth-user-pass-connection consumerKey="${salesforce.comsumerkey}" consumerSecret="${salesforce.comsumersecret}" username="${salesforce.username}" password="${salesforce.password}" securityToken="${salesforce.securitytoken}" />
+	</salesforce-composite:composite-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="47775b81-a072-4af1-8483-ab8e2c1b4a59" file="staging.properties" />
+	
+	
+</mule>
