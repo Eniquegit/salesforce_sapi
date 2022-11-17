@@ -1,6 +1,7 @@
 {
   "configs": [
     "salesforce_interface.xml",
+    "config.xml",
     "salesforce-implementation.xml"
   ],
   "secureProperties": [],
@@ -14,9 +15,11 @@
       "exportedPackages": [],
       "exportedResources": [
         "application-types.xml",
+        "config.xml",
         "log4j2.xml",
         "salesforce-implementation.xml",
-        "salesforce_interface.xml"
+        "salesforce_interface.xml",
+        "staging.properties"
       ]
     }
   },

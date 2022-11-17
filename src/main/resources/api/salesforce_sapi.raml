@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: salesforce_sapi
+
+types: 
+  SFdatatype: !include DataTypes/salesforcedataType.raml
+
+/createcomposite:
+  get:
+    queryParameters:
+      accountNumber:
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: SFdatatype
+            examples:
+              output: !include Examples/getSF.json
+  post:
+    body:
+      application/json:
+        type: SFdatatype
+        examples:
+          input: !include Examples/postSF.json
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              message: "SFDC account created"
+  put:
+    body:
+      application/json:
+        type: SFdatatype
+        examples:
+          input: !include Examples/putSF.json
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              message: "Account updated"
+
+  

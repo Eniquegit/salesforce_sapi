@@ -5,4 +5,27 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/salesforce-composite http://www.mulesoft.org/schema/mule/salesforce-composite/current/mule-salesforce-composite.xsd">
+	<flow name="salesforce-implementationFlow" doc:id="83c03276-38c7-48b9-ac64-3e29a0a0d2ff" >
+		<salesforce-composite:execute-composite-request doc:name="Execute composite request" doc:id="0edc63bc-6184-47b8-b918-f8d5285ca168" config-ref="Salesforce_Composite_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="d1eac087-440b-4736-80fc-0a96d6f607c5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="PatchImplementationflow" doc:id="96fad85f-e85d-40a0-b2e4-4f44c777c8a6" >
+		<salesforce-composite:execute-composite-request doc:name="Execute composite request" doc:id="311974a5-f5a8-4edd-a20b-c889b4319f4d" config-ref="Salesforce_Composite_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="5ba79cc3-fd69-4454-a9e3-737c281a90d3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+    </flow>
 </mule>
+

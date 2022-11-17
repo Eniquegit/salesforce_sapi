@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/salesforce-composite http://www.mulesoft.org
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<salesforce-composite:composite-config name="Salesforce_Composite_Config" doc:name="Salesforce Composite Config" doc:id="1a1f0df4-2699-4a8d-be77-39c13a743fc0" >
-		<salesforce-composite:oauth-user-pass-connection consumerKey="${salesforce.comsumerkey}" consumerSecret="${salesforce.comsumersecret}" username="${salesforce.username}" password="${salesforce.password}" securityToken="${salesforce.securitytoken}" />
+		<salesforce-composite:oauth-user-pass-connection consumerKey="${salesforce.consumerkey}" consumerSecret="${salesforce.consumersecret}" username="${salesforce.username}" password="${salesforce.password}" securityToken="${salesforce.securitytoken}" />
 	</salesforce-composite:composite-config>
 	<configuration-properties doc:name="Configuration properties" doc:id="47775b81-a072-4af1-8483-ab8e2c1b4a59" file="staging.properties" />
 	
