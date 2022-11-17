@@ -14,6 +14,14 @@
     "attributes": {
       "exportedPackages": [],
       "exportedResources": [
+        "api/DataTypes/salesaccountdataType.raml",
+        "api/DataTypes/salesBJdataType.raml",
+        "api/DataTypes/salescontactdataType.raml",
+        "api/DataTypes/salesforcedataType.raml",
+        "api/Examples/getSF.json",
+        "api/Examples/postSF.json",
+        "api/Examples/putSF.json",
+        "api/salesforce_sapi.raml",
         "application-types.xml",
         "config.xml",
         "log4j2.xml",
