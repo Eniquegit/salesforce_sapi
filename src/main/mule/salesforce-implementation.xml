@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:salesforce-composite="http://www.mulesoft.org/schema/mule/salesforce-composite" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/salesforce-composite http://www.mulesoft.org/schema/mule/salesforce-composite/current/mule-salesforce-composite.xsd">
+	<salesforce-composite:composite-config name="Salesforce_Composite_Config" doc:name="Salesforce Composite Config" doc:id="6d329a9d-0db6-4287-a159-53469a1c9c28" >
+		<salesforce-composite:oauth-user-pass-connection consumerKey="3MVG9wt4IL4O5wvIQUq7aZm2AY1kmnA1rue9jXSR.94baCO4KfLHGj.80C84GMOtI4kGmRcQVkLHc1bROMK5c" consumerSecret="E110CE9722A18C4B02AE0F39EE4440687206AD6DADF505E1B9840519DFE73EF8" username="anushanalla@eniquesolutions.com" password="anuakhi@0510" securityToken="DcTGmYYbtR9AhbkCWcCnkPYda" />
+	</salesforce-composite:composite-config>
+	<flow name="salesforce-implementationFlow" doc:id="83c03276-38c7-48b9-ac64-3e29a0a0d2ff" >
+		<salesforce-composite:execute-composite-request doc:name="Execute composite request" doc:id="0edc63bc-6184-47b8-b918-f8d5285ca168" config-ref="Salesforce_Composite_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="d1eac087-440b-4736-80fc-0a96d6f607c5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
